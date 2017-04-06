@@ -19,7 +19,7 @@ public class Helper {
 
     public static Map<String, String> parseLine(String line) {
         Map<String, String> result = new HashMap<>();
-        String regex = "^(show (?:type|bank)|info (?:account|depositor)|list|sum|count|add|delete)(?:\\s([-'\\w\\d ]+))?$";
+        String regex = "^(show (?:type|bank)|info (?:account|depositor)|list|sum|count|add|delete)(?:\\s(.+))?$";
         Matcher matcher = Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(line);
         if (matcher.matches()) {
             switch (matcher.group(1).toLowerCase()) {
