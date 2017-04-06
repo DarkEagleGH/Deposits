@@ -1,4 +1,4 @@
-package server;
+package core;
 
 public class Constants {
     public static String TYPE_POSTE_RESTANTE = "До востребования";
