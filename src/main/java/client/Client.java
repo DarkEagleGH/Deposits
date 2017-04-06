@@ -12,7 +12,6 @@ public class Client {
 
     static boolean validationEnter(String enter) {
         boolean result = false;
-        //TODO
         String operation[] = {"list", "sum", "count"};
         try {
             for (int i = 0; i < enter.length(); i++) {
@@ -30,6 +29,10 @@ public class Client {
     }
 
     static void request(String enter) {
+
+    }
+
+    static void normalize() {
 
     }
 }
