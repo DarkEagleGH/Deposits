@@ -1,6 +1,8 @@
 package server;
 
-public class Deposit extends InputValidation {
+import core.Validation;
+
+public class Deposit extends Validation {
     private String name;
     private String country;
     private String type;
@@ -68,10 +70,10 @@ public class Deposit extends InputValidation {
     public void setAccountId(long accountId) {
         try {
             String tempString = Long.toString(accountId);
-            boolean tempBool = validationAccountID(tempString);
-            if (tempBool) {
-                this.accountId = accountId;
-            }
+//            boolean tempBool = validationAccountID(tempString);
+//            if (tempBool) {
+//                this.accountId = accountId;
+//            }
         } catch (Exception e) {
             //TODO Нужно придумать эксепшн, если не получилось записать. вообще вероятно что тут null запишется
             //TODO А вообще стоп! accountId у нас будет генериться автоматом, нам нужно только подстраховаться для команды -> info account <accountId>, так что тут нужно как-то выкрутится
