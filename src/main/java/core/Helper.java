@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Validation {
+public class Helper {
     //проверка кол-ва символов в accountId. по умолчанию 16 символов
     boolean validationAccountID(String accountId) {
         boolean resultValAccId;
@@ -52,4 +52,40 @@ public class Validation {
         return result;
     }
 
+    public static String normalize(String enter) {
+        String result = enter.trim();
+        Pattern pattern = Pattern.compile("(\\s{2,})");
+        return pattern.matcher(result).replaceAll(" ");
+    }
+
+    /*
+Code groups:
+    100     : parsing
+    11x     : params check
+
+    2xx     : transmission
+*/
+    public static String translateCode(int code) {
+        String result;
+        switch (code) {
+            case 100:
+                result = "Input correct";
+                break;
+            case 101:
+                result = "Not enough params";
+                break;
+            case 102:
+                result = "No such command";
+                break;
+            case 110:
+                result = "Wrong account id";
+                break;
+            case 200:
+                result = "OK";
+                break;
+            default:
+                result = "Unknown error code";
+        }
+        return result;
+    }
 }

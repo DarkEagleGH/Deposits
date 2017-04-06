@@ -1,8 +1,8 @@
 package server;
 
-import core.Validation;
+import core.Helper;
 
-public class Deposit extends Validation {
+public class Deposit extends Helper {
     private String name;
     private String country;
     private String type;
