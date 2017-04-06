@@ -1,5 +1,5 @@
 package server;
-
+//TODO
 public class InputValidation {
     //проверка кол-ва символов в accountId. по умолчанию 16 символов
     boolean validationAccountID(String accountId) {
