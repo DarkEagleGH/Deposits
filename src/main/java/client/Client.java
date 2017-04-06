@@ -1,6 +1,8 @@
 package client;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Client {
     static Scanner scanner = new Scanner(System.in);
@@ -11,6 +13,7 @@ public class Client {
     }
 
     static boolean validationEnter(String enter) {
+        String line = normalize(enter);
         boolean result = false;
         String operation[] = {"list", "sum", "count"};
         try {
@@ -32,7 +35,9 @@ public class Client {
 
     }
 
-    static void normalize() {
-
+    static String normalize(String enter) {
+        String result = enter.trim();
+        Pattern pattern = Pattern.compile("(\\s{2,})");
+        return pattern.matcher(result).replaceAll(" ");
     }
 }
