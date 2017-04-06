@@ -68,8 +68,8 @@ Code groups:
     public static String translateCode(int code) {
         String result;
         switch (code) {
-            case 100:
-                result = "Input correct";
+            case 0:
+                result = "OK";
                 break;
             case 101:
                 result = "Not enough params";
