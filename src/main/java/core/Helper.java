@@ -26,7 +26,7 @@ public class Helper {
                 case "list":
                 case "sum":
                 case "count":
-                    result.put("code", "100");
+                    result.put("code", "0");
                     result.put("command", matcher.group(1).toLowerCase());
                     break;
                 case "info account":
@@ -36,7 +36,7 @@ public class Helper {
                 case "add":
                 case "delete":
                     if (matcher.group(2) != null && !matcher.group(2).isEmpty()) {
-                        result.put("code", "100");
+                        result.put("code", "0");
                         result.put("command", matcher.group(1).toLowerCase());
                         result.put("param", matcher.group(2));
                     } else {
