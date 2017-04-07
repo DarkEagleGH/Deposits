@@ -19,10 +19,14 @@ public class Helper {
 
     public static Map<String, String> parseLine(String line) {
         Map<String, String> result = new HashMap<>();
-        String regex = "^(show (?:type|bank)|info (?:account|depositor)|list|sum|count|add|delete)(?:\\s(.+))?$";
+        String regex = "^(show (?:type|bank)|info (?:account|depositor)|list|sum|count|add|delete|exit|quit)(?:\\s(.+))?$";
         Matcher matcher = Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(line);
         if (matcher.matches()) {
             switch (matcher.group(1).toLowerCase()) {
+                case "exit":
+                case "quit":
+                    result.put("code", "1");
+                    break;
                 case "list":
                 case "sum":
                 case "count":
@@ -60,32 +64,38 @@ public class Helper {
 
     /*
 Code groups:
+      x     : special state
     100     : parsing
     11x     : params check
 
     2xx     : transmission
 */
     public static String translateCode(int code) {
-        String result;
+        StringBuilder result = new StringBuilder("[");
+        result.append(code).append("] ");
         switch (code) {
             case 0:
-                result = "OK";
+                result.append("OK");
+                break;
+            case 1:
+                result.append("Exit");
                 break;
             case 101:
-                result = "Not enough params";
+                result.append("Not enough params");
                 break;
             case 102:
-                result = "No such command";
+                result.append("No such command");
                 break;
             case 110:
-                result = "Wrong account id";
+                result.append("Wrong account id");
                 break;
-            case 200:
-                result = "OK";
+            case 201:
+                result.append("No connection to server ").append(Constants.SERVER_ADDRESS)
+                        .append(":").append(Constants.PORT);
                 break;
             default:
-                result = "Unknown error code";
+                result.append("Unknown error code");
         }
-        return result;
+        return result.toString();
     }
 }
