@@ -10,7 +10,6 @@ public class WriteResponse {
                 break;
             case "sum":
             case "count":
-                break;
             case "info account":
             case "info depositor":
             case "show type":

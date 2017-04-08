@@ -55,7 +55,7 @@ public class Client {
                             System.out.println(response.toString());
                             if (response.get("code").equals("0")) {
                                 if (response.containsKey("data")) {
-                                    System.out.println(writeResponse.writeResponse("list", response.get("data")));
+                                    System.out.println(writeResponse.writeResponse(parsed.get("command"),response.get("data")));
                                 }
 
                             } else {
