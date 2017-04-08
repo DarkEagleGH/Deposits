@@ -3,35 +3,26 @@ package client;
 import core.Constants;
 
 import java.io.*;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.util.Map;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 import static core.Helper.*;
 
 public class Client {
-    //    private static Scanner scanner = new Scanner(System.in);
-    private static InetAddress ipAddress;
-    private static Socket socket;
-    private static DataInputStream input;
-    private static DataOutputStream output;
+    private static LinkedBlockingQueue<String> requestQueue;
+    private static LinkedBlockingQueue<String> responseQueue;
 
 
     public static void main(String[] args) {
         Boolean exit = false;
         System.out.println("Client started");
-        try {
-            ipAddress = InetAddress.getByName(Constants.SERVER_ADDRESS);
-            socket = new Socket(ipAddress, Constants.PORT);
-            input = new DataInputStream(socket.getInputStream());
-            output = new DataOutputStream(socket.getOutputStream());
-        } catch (IOException e) {
-            System.out.println(translateCode(201));
-            System.exit(0);
-//            e.printStackTrace();
-        }
 
+        requestQueue = new LinkedBlockingQueue<>();
+        responseQueue = new LinkedBlockingQueue<>();
         BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
+        ClientConnector clientConnector = new ClientConnector(requestQueue, responseQueue);
+        clientConnector.execute();
 
         while (!exit) {
             String line = null;
@@ -44,12 +35,20 @@ public class Client {
                 continue;
             }
             Map<String, String> parsed = parseLine(line);
-            System.out.println(parsed.toString());
-            System.out.println(translateCode(Integer.parseInt(parsed.get("code"))));
+            System.out.println(parsed.toString() + " - " + translateCode(Integer.parseInt(parsed.get("code"))));
+
+            if (!clientConnector.isConnected()) {
+                exit = true;
+            }
             switch (parsed.get("code")) {
                 case "0":
                     parsed.remove("code");
-                    request(parsed.toString());
+                    try {
+                        requestQueue.put(parsed.toString());
+                        System.out.println(responseQueue.poll(Constants.RESPONSE_TIMEOUT, TimeUnit.MILLISECONDS));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case "1":
                     exit = true;
@@ -57,22 +56,6 @@ public class Client {
             }
         }
 
-        try {
-            if (socket.isConnected()) {
-                socket.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    static void request(String data) {
-        try {
-            output.writeUTF(data);
-            output.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        clientConnector.stop();
     }
 }

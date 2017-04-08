@@ -71,7 +71,7 @@ Code groups:
     2xx     : transmission
 */
     public static String translateCode(int code) {
-        StringBuilder result = new StringBuilder("[");
+        StringBuffer result = new StringBuffer("[");
         result.append(code).append("] ");
         switch (code) {
             case 0:

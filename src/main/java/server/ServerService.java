@@ -4,16 +4,17 @@ import core.Constants;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.concurrent.LinkedBlockingQueue;
 
-public class ServerService extends Thread {
+public class ServerService {
 
     static ServerSocket socket;
-    public static List<ConnectedClient> clients = new LinkedList<>();
+    private static LinkedBlockingQueue requestQueue;
+    private static LinkedBlockingQueue responseQueue;
 
-    @Override
-    public void start() {
+//    public static List<ServerConnector> clients = new LinkedList<>();
+
+    public void execute() {
 
         try {
             socket = new ServerSocket(Constants.PORT);
@@ -24,15 +25,15 @@ public class ServerService extends Thread {
         }
         System.out.println("Server service started");
         while (true) {
-            ConnectedClient client = null;
+            ServerConnector client = null;
             try {
-                client = new ConnectedClient(socket.accept());
+                client = new ServerConnector(socket.accept());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            clients.add(client);
             if (client != null) {
-                client.start();
+//                clients.add(client);
+                client.execute();
             }
         }
 
