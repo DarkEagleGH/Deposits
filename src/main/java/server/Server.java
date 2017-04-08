@@ -13,5 +13,8 @@ public class Server {
         responseQueue = new LinkedBlockingQueue<>();
         ServerConnectorPool serverConnectorPool = new ServerConnectorPool();
         serverConnectorPool.execute();
+
+        DataControl dataControl = new DataControl();
+        dataControl.init();
     }
 }

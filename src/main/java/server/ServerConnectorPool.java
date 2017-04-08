@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class ServerConnectorPool {
+public class ServerConnectorPool implements Runnable {
 
     static ServerSocket socket;
     private static LinkedBlockingQueue requestQueue;
@@ -14,8 +14,8 @@ public class ServerConnectorPool {
 
 //    public static List<ServerConnector> clients = new LinkedList<>();
 
-    public void execute() {
-
+    @Override
+    public void run() {
         try {
             socket = new ServerSocket(Constants.PORT);
         } catch (IOException e) {
@@ -39,5 +39,9 @@ public class ServerConnectorPool {
 
     }
 
+    public void execute() {
+        Thread thread = new Thread(this);
+        thread.start();
+    }
 
 }

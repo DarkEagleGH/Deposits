@@ -12,4 +12,5 @@ public class Constants {
     public static final String SERVER_ADDRESS = "127.0.0.1";
     public static final String KEEP_ALIVE_SEQUENCE = "0000";
     public static final int RESPONSE_TIMEOUT = 1000;
+    public static final String DATA_FILE = "./data";
 }

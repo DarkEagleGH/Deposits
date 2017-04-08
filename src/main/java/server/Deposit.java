@@ -7,13 +7,13 @@ public class Deposit extends Helper {
     private String country;
     private String type;
     private String depositor;
-    private long accountId;
+    private String accountId;
     private long amountOnDeposit;
     private int profitability;
     private int termOfDeposit;
 
-    public Deposit(String name, String country, String type, String depositor, long accountId, long amountOnDeposit, int profitability, int termOfDeposit) {
-        setName(name);
+    public Deposit(String bank, String country, String type, String depositor, String accountId, long amountOnDeposit, int profitability, int termOfDeposit) {
+        setBank(bank);
         setCountry(country);
         setType(type);
         setDepositor(depositor);
@@ -39,7 +39,7 @@ public class Deposit extends Helper {
         return depositor;
     }
 
-    public long getAccountId() {
+    public String getAccountId() {
         return accountId;
     }
 
@@ -51,7 +51,7 @@ public class Deposit extends Helper {
         return profitability;
     }
 
-    public void setName(String name) {
+    public void setBank(String name) {
         this.name = name;
     }
 
@@ -67,9 +67,9 @@ public class Deposit extends Helper {
         this.depositor = depositor;
     }
 
-    public void setAccountId(long accountId) {
+    public void setAccountId(String accountId) {
         try {
-            String tempString = Long.toString(accountId);
+//            String tempString = Long.toString(accountId);
 //            boolean tempBool = validationAccountID(tempString);
 //            if (tempBool) {
 //                this.accountId = accountId;
@@ -78,7 +78,7 @@ public class Deposit extends Helper {
             //TODO Нужно придумать эксепшн, если не получилось записать. вообще вероятно что тут null запишется
             //TODO А вообще стоп! accountId у нас будет генериться автоматом, нам нужно только подстраховаться для команды -> info account <accountId>, так что тут нужно как-то выкрутится
         }
-
+        this.accountId = accountId;
     }
 
     public void setAmountOnDeposit(long amountOnDeposit) {
