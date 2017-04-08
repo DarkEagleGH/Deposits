@@ -60,7 +60,7 @@ public class Client {
                                     System.out.println(writeResponse.writeResponse(parsed.get("command"), response.get("data")));
                                 }
                                 if (parsed.get("command").equals("add")) {
-                                    System.out.println("OK");
+                                    System.out.println(translateCode(0));
                                 }
                             } else {
                                 System.out.println(translateCode(Integer.parseInt(response.get("code"))));

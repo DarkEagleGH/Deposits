@@ -1,13 +1,12 @@
 package server;
 
+import Helpers.Helper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 
 import static Helpers.Constants.*;
 
@@ -102,6 +101,7 @@ class DataControl {
                     } else {
                         response.put("code", "303");
                     }
+                    break;
                 case "show type":
                     for (Deposit dep : data) {
                         if (request.get("param").equals(dep.getType())) {
@@ -114,6 +114,7 @@ class DataControl {
                     } else {
                         response.put("code", "304");
                     }
+                    break;
                 case "show bank":
                     for (Deposit dep : data) {
                         if (request.get("param").equals(dep.getName())) {
@@ -164,18 +165,32 @@ class DataControl {
                 return "306";
             }
         }
+        System.out.println(Arrays.toString(params));
         if (!TYPES.containsKey(params[3])) {
             return "304";
         }
-        if (Long.parseLong(params[5]) < 0) {
+        try {
+            if (Long.parseLong(params[5]) < 0) {
+                return "307";
+            }
+        } catch (NumberFormatException e) {
             return "307";
         }
-        if (Integer.parseInt(params[6]) < 0) {
+        try {
+            if (Long.parseLong(params[6]) < 0) {
+                return "308";
+            }
+        } catch (NumberFormatException e) {
             return "308";
         }
-        if (Integer.parseInt(params[7]) < 0) {
+        try {
+            if (Long.parseLong(params[7]) < 0) {
+                return "309";
+            }
+        } catch (NumberFormatException e) {
             return "309";
         }
+
         Deposit deposit = new Deposit(params[0], params[1], params[2], params[3], params[4],
                 Long.parseLong(params[5]) * 100,
                 Integer.parseInt(params[6]) * 100,
