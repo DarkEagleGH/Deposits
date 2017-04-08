@@ -2,6 +2,8 @@ package client;
 
 import Helpers.Constants;
 import Helpers.FileReaderForHelp;
+import Helpers.WriteResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -18,7 +20,7 @@ public class Client {
     public static void main(String[] args) {
         Boolean exit = false;
         System.out.println(translateCode(3));
-
+        WriteResponse writeResponse = new WriteResponse();
         LinkedBlockingQueue<String> requestQueue = new LinkedBlockingQueue<>();
         LinkedBlockingQueue<String> responseQueue = new LinkedBlockingQueue<>();
         BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
@@ -52,10 +54,8 @@ public class Client {
                         if (response != null && response.containsKey("code")) {
                             System.out.println(response.toString());
                             if (response.get("code").equals("0")) {
-
-                                //////////////response.get("data");
                                 if (response.containsKey("data")) {
-                                    System.out.println(response.get("data"));
+                                    System.out.println(writeResponse.writeResponse("list",response.get("data")));
                                 }
 
                             } else {
