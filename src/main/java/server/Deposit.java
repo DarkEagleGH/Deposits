@@ -23,7 +23,7 @@ class Deposit {
 
     public Deposit(){}
 
-    String getAccountId() {
+    public String getAccountId() {
         return accountId;
     }
 
@@ -31,7 +31,7 @@ class Deposit {
         this.accountId = accountId;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
@@ -39,7 +39,7 @@ class Deposit {
         this.name = name;
     }
 
-    String getCountry() {
+    public String getCountry() {
         return country;
     }
 
@@ -47,7 +47,7 @@ class Deposit {
         this.country = country;
     }
 
-    String getType() {
+    public String getType() {
         return type;
     }
 
@@ -55,7 +55,7 @@ class Deposit {
         this.type = type;
     }
 
-    String getDepositor() {
+    public String getDepositor() {
         return depositor;
     }
 
@@ -63,7 +63,7 @@ class Deposit {
         this.depositor = depositor;
     }
 
-    long getAmountOnDeposit() {
+    public long getAmountOnDeposit() {
         return amountOnDeposit;
     }
 
@@ -71,7 +71,7 @@ class Deposit {
         this.amountOnDeposit = amountOnDeposit;
     }
 
-    int getProfitability() {
+    public int getProfitability() {
         return profitability;
     }
 
@@ -79,7 +79,7 @@ class Deposit {
         this.profitability = profitability;
     }
 
-    int getTermOfDeposit() {
+    public int getTermOfDeposit() {
         return termOfDeposit;
     }
 

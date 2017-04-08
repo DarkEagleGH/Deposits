@@ -90,6 +90,9 @@ public class Helper {
             case 203:
                 result.append("Disconnect from server. Exit");
                 break;
+            case 204:
+                result.append("Response connection timeout");
+                break;
             case 301:
                 result.append("No data");
                 break;

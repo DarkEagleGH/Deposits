@@ -20,6 +20,7 @@ class DataControl {
     DataControl() {
         dataConnector = new DataConnector();
         this.data = dataConnector.getData();
+        dataConnector.writeData(data);
     }
 
     @SuppressWarnings("unchecked")

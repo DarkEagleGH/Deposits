@@ -47,6 +47,10 @@ public class Client {
                     try {
                         requestQueue.put(mapper.writeValueAsString(parsed));
                         String responseLine = responseQueue.poll(Constants.RESPONSE_TIMEOUT, TimeUnit.MILLISECONDS);
+                        if (responseLine == null || responseLine.isEmpty()){
+                            System.out.println(translateCode(204));
+                            continue;
+                        }
                         Map<String, String> response;
                         response = mapper.readValue(responseLine, new TypeReference<HashMap<String, String>>() {
                         });
