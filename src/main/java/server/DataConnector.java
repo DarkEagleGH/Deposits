@@ -9,10 +9,7 @@ import java.util.List;
 
 class DataConnector {
 
-    DataConnector() {
-
-    }
-
+    @SuppressWarnings("unchecked")
     List<Deposit> getData() {
         File dataFile = new File(Constants.DATA_FILE);
         ObjectMapper mapper = new ObjectMapper();

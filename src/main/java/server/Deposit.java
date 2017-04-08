@@ -2,7 +2,7 @@ package server;
 
 import Helpers.Helper;
 
-public class Deposit extends Helper {
+class Deposit extends Helper {
     private String name;
     private String country;
     private String type;
@@ -89,11 +89,11 @@ public class Deposit extends Helper {
         this.profitability = profitability;
     }
 
-	public int getTermOfDeposit() {
-		return termOfDeposit;
-	}
+    public int getTermOfDeposit() {
+        return termOfDeposit;
+    }
 
-	public void setTermOfDeposit(int termOfDeposit) {
-		this.termOfDeposit = termOfDeposit;
-	}
+    public void setTermOfDeposit(int termOfDeposit) {
+        this.termOfDeposit = termOfDeposit;
+    }
 }

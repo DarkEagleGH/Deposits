@@ -8,13 +8,11 @@ import java.util.Map;
 
 class DataControl {
     private List<Deposit> data;
-    private DataConnector dataConnector;
-    private ObjectMapper mapper;
     private Map<String, String> request;
 
 
     DataControl() {
-        dataConnector = new DataConnector();
+        DataConnector dataConnector = new DataConnector();
         this.data = dataConnector.getData();
     }
 
@@ -28,7 +26,7 @@ class DataControl {
     @SuppressWarnings("unchecked")
     synchronized String execute(String data) {
         try {
-            mapper = new ObjectMapper();
+            ObjectMapper mapper = new ObjectMapper();
             request = mapper.readValue(data, Map.class);
         } catch (IOException e) {
             e.printStackTrace();

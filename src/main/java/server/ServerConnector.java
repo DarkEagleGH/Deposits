@@ -21,11 +21,11 @@ class ServerConnector implements Runnable {
     @Override
     public void run() {
         System.out.println("new user connected from " + socket.getInetAddress().toString() + ":" + socket.getPort());
-        StringBuffer response = new StringBuffer();
+        StringBuilder response = new StringBuilder();
         try {
             while (socket.isConnected()) {
                 String data = input.readUTF();
-                if (data.equals(Constants.KEEP_ALIVE_SEQUENCE)){
+                if (data.equals(Constants.KEEP_ALIVE_SEQUENCE)) {
                     continue;
                 }
                 System.out.println(data);

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 
-public class ConfigProperties {
+class ConfigProperties {
     private static Properties PROPERTIES;
 
     static {
@@ -17,7 +17,7 @@ public class ConfigProperties {
         }
     }
 
-    public static String getProperty(String key) {
+    static String getProperty(String key) {
         return PROPERTIES.getProperty(key);
     }
 }

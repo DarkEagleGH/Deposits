@@ -9,7 +9,5 @@ public class Server {
         dataControl.init();
         ServerConnectorPool serverConnectorPool = new ServerConnectorPool(dataControl);
         serverConnectorPool.execute();
-
-
     }
 }

@@ -10,16 +10,13 @@ import java.util.concurrent.TimeUnit;
 import static Helpers.Helper.*;
 
 public class Client {
-    private static LinkedBlockingQueue<String> requestQueue;
-    private static LinkedBlockingQueue<String> responseQueue;
-
 
     public static void main(String[] args) {
         Boolean exit = false;
         System.out.println("Client started");
 
-        requestQueue = new LinkedBlockingQueue<>();
-        responseQueue = new LinkedBlockingQueue<>();
+        LinkedBlockingQueue<String> requestQueue = new LinkedBlockingQueue<>();
+        LinkedBlockingQueue<String> responseQueue = new LinkedBlockingQueue<>();
         BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
         ClientConnector clientConnector = new ClientConnector(requestQueue, responseQueue);
         clientConnector.execute();
@@ -31,7 +28,7 @@ public class Client {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if (line.isEmpty()) {
+            if (line != null && line.isEmpty()) {
                 continue;
             }
             Map<String, String> parsed = parseLine(line);

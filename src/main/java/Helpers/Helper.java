@@ -6,16 +6,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Helper {
-    //проверка кол-ва символов в accountId. по умолчанию 16 символов
-    boolean validationAccountID(String accountId) {
-        boolean resultValAccId;
-        if (accountId.length() == 16) {
-            resultValAccId = true;
-        } else {
-            resultValAccId = false;
-        }
-        return resultValAccId;
-    }
 
     public static Map<String, String> parseLine(String line) {
         Map<String, String> result = new HashMap<>();
@@ -71,7 +61,7 @@ Code groups:
     2xx     : transmission
 */
     public static String translateCode(int code) {
-        StringBuffer result = new StringBuffer("[");
+        StringBuilder result = new StringBuilder("[");
         result.append(code).append("] ");
         switch (code) {
             case 0:

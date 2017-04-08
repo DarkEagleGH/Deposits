@@ -5,16 +5,14 @@ import Helpers.Constants;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class ServerConnectorPool implements Runnable {
+class ServerConnectorPool implements Runnable {
 
-    static ServerSocket socket;
+    private static ServerSocket socket;
     private DataControl dataControl;
 
     ServerConnectorPool(DataControl dataControl) {
         this.dataControl = dataControl;
     }
-
-//    public static List<ServerConnector> clients = new LinkedList<>();
 
     @Override
     public void run() {
@@ -34,14 +32,12 @@ public class ServerConnectorPool implements Runnable {
                 e.printStackTrace();
             }
             if (client != null) {
-//                clients.add(client);
                 client.execute();
             }
         }
-
     }
 
-    public void execute() {
+    void execute() {
         Thread thread = new Thread(this);
         thread.start();
     }

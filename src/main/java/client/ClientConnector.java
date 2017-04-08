@@ -13,9 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 import static Helpers.Helper.translateCode;
 
-public class ClientConnector implements Runnable {
-    private InetAddress ipAddress;
-    private Socket socket;
+class ClientConnector implements Runnable {
     private DataInputStream input;
     private DataOutputStream output;
     private boolean connected;
@@ -23,10 +21,10 @@ public class ClientConnector implements Runnable {
     private LinkedBlockingQueue<String> requestQueue;
     private LinkedBlockingQueue<String> responseQueue;
 
-    public ClientConnector(LinkedBlockingQueue requestQueue, LinkedBlockingQueue responseQueue) {
+    @SuppressWarnings("unchecked")
+    ClientConnector(LinkedBlockingQueue requestQueue, LinkedBlockingQueue responseQueue) {
         try {
-            ipAddress = InetAddress.getByName(Constants.SERVER_ADDRESS);
-            socket = new Socket(ipAddress, Constants.PORT);
+            Socket socket = new Socket(InetAddress.getByName(Constants.SERVER_ADDRESS), Constants.PORT);
             socket.setSoTimeout(Constants.RESPONSE_TIMEOUT);
             input = new DataInputStream(socket.getInputStream());
             output = new DataOutputStream(socket.getOutputStream());
@@ -67,16 +65,16 @@ public class ClientConnector implements Runnable {
         System.exit(0);
     }
 
-    public boolean isConnected() {
+    boolean isConnected() {
         return connected;
     }
 
-    public void execute() {
+    void execute() {
         Thread thread = new Thread(this);
         thread.start();
     }
 
-    public void stop() {
+    void stop() {
         this.stop = true;
     }
 }
