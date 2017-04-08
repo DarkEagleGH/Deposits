@@ -1,6 +1,8 @@
 package client;
 
+import Helpers.ConfigProperties;
 import Helpers.Constants;
+import Helpers.Helper;
 
 import java.io.*;
 import java.util.Map;
@@ -16,7 +18,7 @@ public class Client {
 
     public static void main(String[] args) {
         Boolean exit = false;
-        System.out.println("Client started");
+        System.out.println(Helper.translateCode(3));
 
         requestQueue = new LinkedBlockingQueue<>();
         responseQueue = new LinkedBlockingQueue<>();

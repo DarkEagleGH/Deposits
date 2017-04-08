@@ -93,6 +93,18 @@ Code groups:
                 result.append("No connection to server ").append(Constants.SERVER_ADDRESS)
                         .append(":").append(Constants.PORT);
                 break;
+            case 202:
+                result.append("Lost connection with server. Exit");
+                break;
+            case 203:
+                result.append("Disconnect from server. Exit");
+                break;
+            case 2:
+                result.append("Server started");
+                break;
+            case 3:
+                result.append("Client started");
+                break;
             default:
                 result.append("Unknown error code");
         }
