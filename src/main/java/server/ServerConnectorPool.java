@@ -1,6 +1,6 @@
 package server;
 
-import core.Constants;
+import Helpers.Constants;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -23,7 +23,7 @@ public class ServerConnectorPool {
             System.exit(0);
 //            e.printStackTrace();
         }
-        System.out.println("Server service started");
+        System.out.println("Listening");
         while (true) {
             ServerConnector client = null;
             try {

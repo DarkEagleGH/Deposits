@@ -1,6 +1,6 @@
 package client;
 
-import core.Constants;
+import Helpers.Constants;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -10,7 +10,7 @@ import java.net.Socket;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-import static core.Helper.translateCode;
+import static Helpers.Helper.translateCode;
 
 public class ClientConnector implements Runnable {
     private InetAddress ipAddress;

@@ -1,13 +1,13 @@
 package client;
 
-import core.Constants;
+import Helpers.Constants;
 
 import java.io.*;
 import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-import static core.Helper.*;
+import static Helpers.Helper.*;
 
 public class Client {
     private static LinkedBlockingQueue<String> requestQueue;
@@ -35,7 +35,6 @@ public class Client {
                 continue;
             }
             Map<String, String> parsed = parseLine(line);
-            System.out.println(parsed.toString() + " - " + translateCode(Integer.parseInt(parsed.get("code"))));
 
             if (!clientConnector.isConnected()) {
                 exit = true;
@@ -53,6 +52,8 @@ public class Client {
                 case "1":
                     exit = true;
                     break;
+                default:
+                    System.out.println(translateCode(Integer.parseInt(parsed.get("code"))));
             }
         }
 

@@ -1,6 +1,6 @@
 package server;
 
-import core.Constants;
+import Helpers.Constants;
 
 import java.io.*;
 import java.net.Socket;

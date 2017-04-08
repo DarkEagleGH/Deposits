@@ -1,6 +1,6 @@
-package core;
+package server;
 
-import core.Helper;
+import Helpers.Helper;
 
 public class Deposit extends Helper {
     private String name;
