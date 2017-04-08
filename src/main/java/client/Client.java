@@ -47,7 +47,7 @@ public class Client {
                     try {
                         requestQueue.put(mapper.writeValueAsString(parsed));
                         String responseLine = responseQueue.poll(Constants.RESPONSE_TIMEOUT, TimeUnit.MILLISECONDS);
-                        if (responseLine == null || responseLine.isEmpty()){
+                        if (responseLine == null || responseLine.isEmpty()) {
                             System.out.println(translateCode(204));
                             continue;
                         }
@@ -55,10 +55,12 @@ public class Client {
                         response = mapper.readValue(responseLine, new TypeReference<HashMap<String, String>>() {
                         });
                         if (response != null && response.containsKey("code")) {
-                            System.out.println(response.toString());
                             if (response.get("code").equals("0")) {
                                 if (response.containsKey("data")) {
                                     System.out.println(writeResponse.writeResponse(parsed.get("command"), response.get("data")));
+                                }
+                                if (parsed.get("command").equals("add")) {
+                                    System.out.println("OK");
                                 }
                             } else {
                                 System.out.println(translateCode(Integer.parseInt(response.get("code"))));
