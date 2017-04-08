@@ -11,11 +11,11 @@ class Deposit {
     private int termOfDeposit;
 
     public Deposit(String accountId, String name, String country, String type, String depositor, long amountOnDeposit, int profitability, int termOfDeposit) {
+        setAccountId(accountId);
         setName(name);
         setCountry(country);
         setType(type);
         setDepositor(depositor);
-        setAccountId(accountId);
         setAmountOnDeposit(amountOnDeposit);
         setProfitability(profitability);
         setTermOfDeposit(termOfDeposit);

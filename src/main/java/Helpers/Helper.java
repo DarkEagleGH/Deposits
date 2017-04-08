@@ -113,6 +113,21 @@ Code groups:
             case 305:
                 result.append("No such Bank");
                 break;
+            case 306:
+                result.append("AccountId already exists");
+                break;
+            case 307:
+                result.append("Wrong Amount value");
+                break;
+            case 308:
+                result.append("Wrong Profitability value");
+                break;
+            case 309:
+                result.append("Wrong TermOfDeposit value");
+                break;
+            case 310:
+                result.append("Data writing failure");
+                break;
             default:
                 result.append("Unknown error code");
         }

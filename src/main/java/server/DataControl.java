@@ -5,16 +5,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import static Helpers.Constants.*;
 
 class DataControl {
     private List<Deposit> data;
     private Map<String, String> request;
+    private DataConnector dataConnector;
 
 
     DataControl() {
-        DataConnector dataConnector = new DataConnector();
+        dataConnector = new DataConnector();
         this.data = dataConnector.getData();
     }
 
@@ -26,7 +30,7 @@ class DataControl {
     }
 
     @SuppressWarnings("unchecked")
-    synchronized String execute(String requestLine) {
+    String execute(String requestLine) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             request = mapper.readValue(requestLine, Map.class);
@@ -36,12 +40,19 @@ class DataControl {
         Map<String, String> response = new HashMap<>();
         StringBuilder responseLine = new StringBuilder();
         if (request.get("command").equals("add")) {
-            add(request.get("param"));
+            response.put("code", add(request.get("param")));
+
         } else if (request.get("command").equals("delete")) {
-            delete(request.get("param"));
+            response.put("code", delete(request.get("param")));
+
         } else {
             if (data == null || data.isEmpty()) {
                 response.put("code", "301");
+                try {
+                    return mapper.writeValueAsString(response);
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
             }
             response.put("code", "0");
             boolean exists = false;
@@ -131,14 +142,53 @@ class DataControl {
         return null;
     }
 
-    String delete(String accountId) {
-
-        return "";
+    synchronized private String delete(String accountId) {
+        boolean exists = false;
+        final Iterator<Deposit> i = data.iterator();
+        while (i.hasNext()) {
+            if (accountId.equals(i.next().getAccountId())) {
+                i.remove();
+                exists = true;
+            }
+        }
+        if (exists) {
+            if (!dataConnector.writeData(data)) {
+                return "310";
+            }
+            return "0";
+        } else {
+            return "302";
+        }
     }
 
-    String add(String data) {
-
-        return "";
+    synchronized private String add(String depositParams) {
+        String[] params = depositParams.split(";");
+        for (Deposit dep : data) {
+            if (params[0].equals(dep.getAccountId())) {
+                return "306";
+            }
+        }
+        if (!TYPES.containsKey(params[3])) {
+            return "304";
+        }
+        if (Long.parseLong(params[5]) < 0) {
+            return "307";
+        }
+        if (Integer.parseInt(params[6]) < 0) {
+            return "308";
+        }
+        if (Integer.parseInt(params[7]) < 0) {
+            return "309";
+        }
+        Deposit deposit = new Deposit(params[0], params[1], params[2], params[3], params[4],
+                Long.parseLong(params[5]) * 100,
+                Integer.parseInt(params[6]) * 100,
+                Integer.parseInt(params[7]));
+        data.add(deposit);
+        if (!dataConnector.writeData(data)) {
+            return "310";
+        }
+        return "0";
     }
 
 
