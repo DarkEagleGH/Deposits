@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class ServerService {
+public class ServerConnectorPool {
 
     static ServerSocket socket;
     private static LinkedBlockingQueue requestQueue;
