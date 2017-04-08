@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 
-class ConfigProperties {
+public class ConfigProperties {
     private static Properties PROPERTIES;
 
     static {
