@@ -73,6 +73,12 @@ Code groups:
             case 1:
                 result.append("Exit");
                 break;
+            case 2:
+                result.append("Server started");
+                break;
+            case 3:
+                result.append("Client started");
+                break;
             case 101:
                 result.append("Not enough params");
                 break;
@@ -92,11 +98,20 @@ Code groups:
             case 203:
                 result.append("Disconnect from server. Exit");
                 break;
-            case 2:
-                result.append("Server started");
+            case 301:
+                result.append("No data");
                 break;
-            case 3:
-                result.append("Client started");
+            case 302:
+                result.append("No such AccountId");
+                break;
+            case 303:
+                result.append("No such Depositor");
+                break;
+            case 304:
+                result.append("No such Type");
+                break;
+            case 305:
+                result.append("No such Bank");
                 break;
             default:
                 result.append("Unknown error code");

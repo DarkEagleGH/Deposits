@@ -18,7 +18,6 @@ class DataConnector {
         LinkedList<Deposit> data;
         if (dataFile.exists()) {
             try {
-//                data = mapper.readValue(dataFile, LinkedList.class);
                 data = mapper.readValue(dataFile, new TypeReference<LinkedList<Deposit>>(){});
             } catch (IOException e) {
                 e.printStackTrace();

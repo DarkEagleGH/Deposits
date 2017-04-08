@@ -2,7 +2,6 @@ package client;
 
 import Helpers.Constants;
 import Helpers.FileReaderForHelp;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
