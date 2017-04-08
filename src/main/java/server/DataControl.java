@@ -58,11 +58,13 @@ class DataControl {
                     response.put("data", responseLine.toString());
                     break;
                 case "sum":
+                    System.out.println(data.toString());
                     long sum = 0;
                     for (Deposit dep : data) {
                         sum += dep.getAmountOnDeposit();
                     }
                     response.put("data", Long.toString(sum));
+                    System.out.println(sum);
                     break;
                 case "count":
                     response.put("data", Integer.toString(data.size()));

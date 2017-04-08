@@ -54,7 +54,7 @@ public class Client {
                         Map<String, String> response;
                         response = mapper.readValue(responseLine, new TypeReference<HashMap<String, String>>() {
                         });
-                        if (response != null && response.containsKey("code")) {
+                        if (response.containsKey("code")) {
                             if (response.get("code").equals("0")) {
                                 if (response.containsKey("data")) {
                                     System.out.println(writeResponse.writeResponse(parsed.get("command"), response.get("data")));

@@ -16,6 +16,7 @@ public class WriteResponse {
             case "show bank":
             case "add":
             case "delete":
+                result = data;
                 break;
         }
         return result;
