@@ -5,13 +5,15 @@ import Helpers.Constants;
 import java.io.*;
 import java.net.Socket;
 
-public class ServerConnector implements Runnable {
+class ServerConnector implements Runnable {
     private Socket socket;
     private DataInputStream input;
     private DataOutputStream output;
+    private DataControl dataControl;
 
-    public ServerConnector(Socket sock) throws IOException {
+    ServerConnector(Socket sock, DataControl dataControl) throws IOException {
         this.socket = sock;
+        this.dataControl = dataControl;
         input = new DataInputStream(socket.getInputStream());
         output = new DataOutputStream(socket.getOutputStream());
     }
@@ -28,7 +30,8 @@ public class ServerConnector implements Runnable {
                 }
                 System.out.println(data);
                 response.setLength(0);
-                response.append(socket.toString()).append(" - ").append(data);
+                response.append(dataControl.execute(data));
+//                response.append(socket.toString()).append(" - ").append(data);
                 output.writeUTF(response.toString());
             }
         } catch (IOException e) {
@@ -38,7 +41,7 @@ public class ServerConnector implements Runnable {
         }
     }
 
-    public void execute() {
+    void execute() {
         Thread thread = new Thread(this);
         thread.start();
     }

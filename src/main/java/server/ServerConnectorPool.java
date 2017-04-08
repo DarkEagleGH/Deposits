@@ -4,13 +4,15 @@ import Helpers.Constants;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class ServerConnectorPool implements Runnable {
 
     static ServerSocket socket;
-    private static LinkedBlockingQueue requestQueue;
-    private static LinkedBlockingQueue responseQueue;
+    private DataControl dataControl;
+
+    ServerConnectorPool(DataControl dataControl) {
+        this.dataControl = dataControl;
+    }
 
 //    public static List<ServerConnector> clients = new LinkedList<>();
 
@@ -27,7 +29,7 @@ public class ServerConnectorPool implements Runnable {
         while (true) {
             ServerConnector client = null;
             try {
-                client = new ServerConnector(socket.accept());
+                client = new ServerConnector(socket.accept(), dataControl);
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class DataConnector {
+class DataConnector {
 
     DataConnector() {
 
@@ -30,7 +30,7 @@ public class DataConnector {
         return data;
     }
 
-    public boolean writeData(List<Deposit> data) {
+    boolean writeData(List<Deposit> data) {
         File dataFile = new File(Constants.DATA_FILE);
         ObjectMapper mapper = new ObjectMapper();
         try {

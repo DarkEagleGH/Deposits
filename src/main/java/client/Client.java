@@ -1,6 +1,8 @@
 package client;
 
 import Helpers.Constants;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
 import java.util.Map;
@@ -13,7 +15,6 @@ public class Client {
     private static LinkedBlockingQueue<String> requestQueue;
     private static LinkedBlockingQueue<String> responseQueue;
 
-
     public static void main(String[] args) {
         Boolean exit = false;
         System.out.println("Client started");
@@ -23,7 +24,7 @@ public class Client {
         BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
         ClientConnector clientConnector = new ClientConnector(requestQueue, responseQueue);
         clientConnector.execute();
-
+        ObjectMapper mapper = new ObjectMapper();
         while (!exit) {
             String line = null;
             try {
@@ -43,9 +44,9 @@ public class Client {
                 case "0":
                     parsed.remove("code");
                     try {
-                        requestQueue.put(parsed.toString());
+                        requestQueue.put(mapper.writeValueAsString(parsed));
                         System.out.println(responseQueue.poll(Constants.RESPONSE_TIMEOUT, TimeUnit.MILLISECONDS));
-                    } catch (InterruptedException e) {
+                    } catch (InterruptedException | JsonProcessingException e) {
                         e.printStackTrace();
                     }
                     break;
@@ -56,7 +57,6 @@ public class Client {
                     System.out.println(translateCode(Integer.parseInt(parsed.get("code"))));
             }
         }
-
         clientConnector.stop();
     }
 }
