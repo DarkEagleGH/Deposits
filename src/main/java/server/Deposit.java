@@ -1,8 +1,6 @@
 package server;
 
-import Helpers.Helper;
-
-class Deposit extends Helper {
+class Deposit {
     private String name;
     private String country;
     private String type;
@@ -22,6 +20,8 @@ class Deposit extends Helper {
         setProfitability(profitability);
         setTermOfDeposit(termOfDeposit);
     }
+
+    public Deposit(){}
 
     public String getName() {
         return name;
@@ -68,16 +68,6 @@ class Deposit extends Helper {
     }
 
     public void setAccountId(String accountId) {
-        try {
-//            String tempString = Long.toString(accountId);
-//            boolean tempBool = validationAccountID(tempString);
-//            if (tempBool) {
-//                this.accountId = accountId;
-//            }
-        } catch (Exception e) {
-            //TODO Нужно придумать эксепшн, если не получилось записать. вообще вероятно что тут null запишется
-            //TODO А вообще стоп! accountId у нас будет генериться автоматом, нам нужно только подстраховаться для команды -> info account <accountId>, так что тут нужно как-то выкрутится
-        }
         this.accountId = accountId;
     }
 

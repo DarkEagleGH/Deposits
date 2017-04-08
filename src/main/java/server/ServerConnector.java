@@ -24,13 +24,13 @@ class ServerConnector implements Runnable {
         StringBuilder response = new StringBuilder();
         try {
             while (socket.isConnected()) {
-                String data = input.readUTF();
-                if (data.equals(Constants.KEEP_ALIVE_SEQUENCE)) {
+                String requestLine = input.readUTF();
+                if (requestLine.equals(Constants.KEEP_ALIVE_SEQUENCE)) {
                     continue;
                 }
-                System.out.println(data);
+                System.out.println(requestLine);
                 response.setLength(0);
-                response.append(dataControl.execute(data));
+                response.append(dataControl.execute(requestLine));
 //                response.append(socket.toString()).append(" - ").append(data);
                 output.writeUTF(response.toString());
             }

@@ -1,10 +1,12 @@
 package server;
 
 import Helpers.Constants;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 class DataConnector {
@@ -13,10 +15,11 @@ class DataConnector {
     List<Deposit> getData() {
         File dataFile = new File(Constants.DATA_FILE);
         ObjectMapper mapper = new ObjectMapper();
-        List<Deposit> data;
+        LinkedList<Deposit> data;
         if (dataFile.exists()) {
             try {
-                data = mapper.readValue(dataFile, List.class);
+//                data = mapper.readValue(dataFile, LinkedList.class);
+                data = mapper.readValue(dataFile, new TypeReference<LinkedList<Deposit>>(){});
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
