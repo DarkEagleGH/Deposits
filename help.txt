@@ -1,0 +1,9 @@
+list - show deposits list
+sum - show sum all deposits
+count - show deposits count
+info account <account id>
+info depositor <depositor>
+show type <type> 
+show bank <name>
+add <deposit info> - Bank Name;Country;Deposit Type(POSTE_RESTANTE,UNGENT,SETTLEMENT,ACCUMULATIVE,SAVINGS,METAL);Depositor;Account Id;Amount on deposit;Profitability(in %);Time constraints(in days)
+delete <account id>

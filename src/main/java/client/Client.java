@@ -1,6 +1,7 @@
 package client;
 
 import Helpers.Constants;
+import Helpers.FileReaderForHelp;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -50,6 +51,9 @@ public class Client {
                     break;
                 case "1":
                     exit = true;
+                    break;
+                case "5":
+                    FileReaderForHelp.ReadHelp();
                     break;
                 default:
                     System.out.println(translateCode(Integer.parseInt(parsed.get("code"))));
