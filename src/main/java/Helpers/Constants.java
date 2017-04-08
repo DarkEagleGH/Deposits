@@ -6,12 +6,12 @@ public class Constants {
     public static final HashMap<String, String> TYPES = new HashMap<>();
     static
     {
-        TYPES.put("TYPE_POSTE_RESTANTE", "До востребования");
-        TYPES.put("TYPE_UNGENT", "Срочный");
-        TYPES.put("TYPE_SETTLEMENT", "Расчетный");
-        TYPES.put("TYPE_ACCUMULATIVE", "Накопительный");
-        TYPES.put("TYPE_SAVINGS", "Сберегательный");
-        TYPES.put("TYPE_METAL", "Металлический");
+        TYPES.put("POSTE_RESTANTE", "До востребования");
+        TYPES.put("UNGENT", "Срочный");
+        TYPES.put("SETTLEMENT", "Расчетный");
+        TYPES.put("ACCUMULATIVE", "Накопительный");
+        TYPES.put("SAVINGS", "Сберегательный");
+        TYPES.put("METAL", "Металлический");
     }
 
     public static final int PORT = Integer.parseInt(ConfigProperties.getProperty("port").trim());

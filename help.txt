@@ -7,6 +7,7 @@ show type <type>
 show name <name>
 add <deposit info> - Account Id;Bank Name;Country;Deposit Type;Depositor;Amount on deposit;Profitability(in %);Time constraints(in days)
     Available types: POSTE_RESTANTE,UNGENT,SETTLEMENT,ACCUMULATIVE,SAVINGS,METAL
+    Example: add 452523;Privet;UK;UNGENT;Depositor;50000;89;365;
 delete <account id>
 exit
 quit
