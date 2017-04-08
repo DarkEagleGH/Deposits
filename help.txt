@@ -7,3 +7,5 @@ show type <type>
 show name <name>
 add <deposit info> - Account Id;Bank Name;Country;Deposit Type(POSTE_RESTANTE,UNGENT,SETTLEMENT,ACCUMULATIVE,SAVINGS,METAL);Depositor;Amount on deposit;Profitability(in %);Time constraints(in days)
 delete <account id>
+exit
+quit
