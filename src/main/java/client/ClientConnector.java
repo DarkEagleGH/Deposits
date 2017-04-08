@@ -1,7 +1,6 @@
 package client;
 
 import Helpers.Constants;
-import Helpers.Helper;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -11,7 +10,7 @@ import java.net.Socket;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-import static Helpers.Helper.translateCode;
+import static Helpers.Helper.*;
 
 class ClientConnector implements Runnable {
     private DataInputStream input;
@@ -57,10 +56,10 @@ class ClientConnector implements Runnable {
             }
         }
         if (!connected) {
-            System.out.println(Helper.translateCode(202));
+            System.out.println(translateCode(202));
         }
         if (stop) {
-            System.out.println(Helper.translateCode(203));
+            System.out.println(translateCode(203));
         }
         System.exit(0);
     }

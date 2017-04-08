@@ -1,10 +1,8 @@
 package client;
 
-import Helpers.ConfigProperties;
 import Helpers.Constants;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import Helpers.Helper;
 
 import java.io.*;
 import java.util.Map;
@@ -17,7 +15,7 @@ public class Client {
 
     public static void main(String[] args) {
         Boolean exit = false;
-        System.out.println(Helper.translateCode(3));
+        System.out.println(translateCode(3));
 
         LinkedBlockingQueue<String> requestQueue = new LinkedBlockingQueue<>();
         LinkedBlockingQueue<String> responseQueue = new LinkedBlockingQueue<>();
