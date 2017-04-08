@@ -12,13 +12,7 @@ public class Constants {
         TYPES.put("TYPE_ACCUMULATIVE", "Накопительный");
         TYPES.put("TYPE_SAVINGS", "Сберегательный");
         TYPES.put("TYPE_METAL", "Металлический");
-    }/*
-    public static final String TYPE_POSTE_RESTANTE = "До востребования";
-    public static final String TYPE_UNGENT = "Срочный";
-    public static final String TYPE_SETTLEMENT = "Расчетный";
-    public static final String TYPE_ACCUMULATIVE = "Накопительный";
-    public static final String TYPE_SAVINGS = "Сберегательный";
-    public static final String TYPE_METAL = "Металлический";*/
+    }
 
     public static final int PORT = Integer.parseInt(ConfigProperties.getProperty("port").trim());
     public static final String SERVER_ADDRESS = ConfigProperties.getProperty("server_address").trim();

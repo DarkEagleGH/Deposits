@@ -22,13 +22,6 @@ class DataControl {
         this.data = dataConnector.getData();
     }
 
-    void init() {
-//        for (int i=0; i<5; i++) {
-//            data.add(new Deposit("bank", "uk", "type", "John", Double.toString(Math.random() * 10000), 999999l, 14, 360));
-//        }
-        System.out.println(data.toString());
-    }
-
     @SuppressWarnings("unchecked")
     String execute(String requestLine) {
         ObjectMapper mapper = new ObjectMapper();

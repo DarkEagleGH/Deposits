@@ -51,8 +51,6 @@ class ClientConnector implements Runnable {
                 }
             } catch (InterruptedException | IOException e) {
                 this.connected = false;
-//                this.stop = true;
-//                e.printStackTrace();
             }
         }
         if (!connected) {

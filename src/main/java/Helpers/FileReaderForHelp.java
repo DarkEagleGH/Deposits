@@ -10,7 +10,7 @@ public class FileReaderForHelp {
             while ((c = fileReader.read()) != -1) System.out.print((char) c);
             System.out.println();
         } catch (Exception e) {
-            System.out.println("file HELP not found!");
+            System.out.println("HELP file not found!");
         }
     }
 }

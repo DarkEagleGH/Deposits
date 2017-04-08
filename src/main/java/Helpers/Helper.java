@@ -55,14 +55,6 @@ public class Helper {
         return pattern.matcher(result).replaceAll(" ");
     }
 
-    /*
-Code groups:
-      x     : special state
-    100     : parsing
-    11x     : params check
-
-    2xx     : transmission
-*/
     public static String translateCode(int code) {
         StringBuilder result = new StringBuilder("[");
         result.append(code).append("] ");

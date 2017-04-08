@@ -8,7 +8,6 @@ public class Server {
         System.out.println(translateCode(2));
 
         DataControl dataControl = new DataControl();
-        dataControl.init();
         ServerConnectorPool serverConnectorPool = new ServerConnectorPool(dataControl);
         serverConnectorPool.execute();
     }

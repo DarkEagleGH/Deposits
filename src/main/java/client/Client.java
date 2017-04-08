@@ -3,7 +3,6 @@ package client;
 import Helpers.Constants;
 import Helpers.FileReaderForHelp;
 import Helpers.WriteResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -55,9 +54,8 @@ public class Client {
                             System.out.println(response.toString());
                             if (response.get("code").equals("0")) {
                                 if (response.containsKey("data")) {
-                                    System.out.println(writeResponse.writeResponse(parsed.get("command"),response.get("data")));
+                                    System.out.println(writeResponse.writeResponse(parsed.get("command"), response.get("data")));
                                 }
-
                             } else {
                                 System.out.println(translateCode(Integer.parseInt(response.get("code"))));
                             }

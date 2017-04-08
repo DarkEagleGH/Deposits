@@ -5,7 +5,8 @@ info account <account id>
 info depositor <depositor>
 show type <type> 
 show name <name>
-add <deposit info> - Account Id;Bank Name;Country;Deposit Type(POSTE_RESTANTE,UNGENT,SETTLEMENT,ACCUMULATIVE,SAVINGS,METAL);Depositor;Amount on deposit;Profitability(in %);Time constraints(in days)
+add <deposit info> - Account Id;Bank Name;Country;Deposit Type;Depositor;Amount on deposit;Profitability(in %);Time constraints(in days)
+    Available types: POSTE_RESTANTE,UNGENT,SETTLEMENT,ACCUMULATIVE,SAVINGS,METAL
 delete <account id>
 exit
 quit
