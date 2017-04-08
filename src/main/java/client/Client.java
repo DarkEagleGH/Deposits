@@ -3,9 +3,11 @@ package client;
 import Helpers.Constants;
 import Helpers.FileReaderForHelp;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -44,8 +46,24 @@ public class Client {
                     parsed.remove("code");
                     try {
                         requestQueue.put(mapper.writeValueAsString(parsed));
-                        System.out.println(responseQueue.poll(Constants.RESPONSE_TIMEOUT, TimeUnit.MILLISECONDS));
-                    } catch (InterruptedException | JsonProcessingException e) {
+                        String responseLine = responseQueue.poll(Constants.RESPONSE_TIMEOUT, TimeUnit.MILLISECONDS);
+                        Map<String, String> response;
+                        response = mapper.readValue(responseLine, new TypeReference<HashMap<String, String>>() {
+                        });
+                        if (response != null && response.containsKey("code")) {
+                            System.out.println(response.toString());
+                            if (response.get("code").equals("0")) {
+
+                                //////////////response.get("data");
+                                if (response.containsKey("data")) {
+                                    System.out.println(response.get("data"));
+                                }
+
+                            } else {
+                                System.out.println(translateCode(Integer.parseInt(response.get("code"))));
+                            }
+                        }
+                    } catch (InterruptedException | IOException e) {
                         e.printStackTrace();
                     }
                     break;
