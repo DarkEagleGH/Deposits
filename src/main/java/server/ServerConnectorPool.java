@@ -25,7 +25,7 @@ public class ServerConnectorPool implements Runnable {
             System.exit(0);
 //            e.printStackTrace();
         }
-        System.out.println("Listening");
+
         while (true) {
             ServerConnector client = null;
             try {

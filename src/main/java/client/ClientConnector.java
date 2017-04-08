@@ -1,6 +1,7 @@
 package client;
 
 import Helpers.Constants;
+import Helpers.Helper;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -41,7 +42,6 @@ public class ClientConnector implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Connected");
         String data;
         while (!stop && connected) {
             try {
@@ -59,10 +59,10 @@ public class ClientConnector implements Runnable {
             }
         }
         if (!connected) {
-            System.out.println("Lost connection with server. Exit");
+            System.out.println(Helper.translateCode(202));
         }
         if (stop) {
-            System.out.println("Disconnect from server. Exit");
+            System.out.println(Helper.translateCode(203));
         }
         System.exit(0);
     }

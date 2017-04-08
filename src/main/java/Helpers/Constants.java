@@ -8,9 +8,9 @@ public class Constants {
     public static final String TYPE_SAVINGS = "Сберегательный";
     public static final String TYPE_METAL = "Металлический";
 
-    public static final int PORT = 8980;
-    public static final String SERVER_ADDRESS = "127.0.0.1";
-    public static final String KEEP_ALIVE_SEQUENCE = "0000";
-    public static final int RESPONSE_TIMEOUT = 1000;
-    public static final String DATA_FILE = "./data";
+    public static final int PORT = Integer.parseInt(ConfigProperties.getProperty("port").trim());
+    public static final String SERVER_ADDRESS = ConfigProperties.getProperty("server_address").trim();
+    public static final String KEEP_ALIVE_SEQUENCE = ConfigProperties.getProperty("keep_alive_sequence").trim();
+    public static final int RESPONSE_TIMEOUT = Integer.parseInt(ConfigProperties.getProperty("response_timeout").trim());;
+    public static final String DATA_FILE = ConfigProperties.getProperty("data_file").trim();
 }
