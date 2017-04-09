@@ -31,7 +31,6 @@ class ServerConnector implements Runnable {
                 System.out.println(requestLine);
                 response.setLength(0);
                 response.append(dataControl.execute(requestLine));
-//                response.append(socket.toString()).append(" - ").append(data);
                 output.writeUTF(response.toString());
             }
         } catch (IOException e) {

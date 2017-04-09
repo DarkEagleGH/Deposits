@@ -52,7 +52,9 @@ public class Helper {
     public static String normalize(String enter) {
         String result = enter.trim();
         Pattern pattern = Pattern.compile("(\\s{2,})");
-        return pattern.matcher(result).replaceAll(" ");
+        result = pattern.matcher(result).replaceAll(" ");
+        pattern = Pattern.compile("(\\s+;\\s+|\\s+;|;\\s+)");
+        return pattern.matcher(result).replaceAll(";");
     }
 
     public static String translateCode(int code) {
@@ -66,9 +68,11 @@ public class Helper {
                 result.append("Exit");
                 break;
             case 2:
+                result.setLength(0);
                 result.append("Server started");
                 break;
             case 3:
+                result.setLength(0);
                 result.append("Client started");
                 break;
             case 101:
@@ -78,7 +82,10 @@ public class Helper {
                 result.append("No such command");
                 break;
             case 110:
-                result.append("Wrong account id");
+                result.append("Wrong AccountId");
+                break;
+            case 111:
+                result.append("Converting error");
                 break;
             case 201:
                 result.append("No connection to server ").append(Constants.SERVER_ADDRESS)
@@ -92,6 +99,9 @@ public class Helper {
                 break;
             case 204:
                 result.append("Response connection timeout");
+                break;
+            case 205:
+                result.append("Unknown connection error");
                 break;
             case 301:
                 result.append("No data");
@@ -122,6 +132,9 @@ public class Helper {
                 break;
             case 310:
                 result.append("Data writing failure");
+                break;
+            case 311:
+                result.append("Wrong params count");
                 break;
             default:
                 result.append("Unknown error code");

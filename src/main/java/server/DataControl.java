@@ -57,13 +57,11 @@ class DataControl {
                     response.put("data", responseLine.toString());
                     break;
                 case "sum":
-                    System.out.println(data.toString());
                     long sum = 0;
                     for (Deposit dep : data) {
                         sum += dep.getAmountOnDeposit();
                     }
                     response.put("data", Long.toString(sum));
-                    System.out.println(sum);
                     break;
                 case "count":
                     response.put("data", Integer.toString(data.size()));
@@ -160,12 +158,14 @@ class DataControl {
 
     synchronized private String add(String depositParams) {
         String[] params = depositParams.split(";");
+        if (params.length != 8){
+            return "311";
+        }
         for (Deposit dep : data) {
             if (params[0].equals(dep.getAccountId())) {
                 return "306";
             }
         }
-        System.out.println(Arrays.toString(params));
         if (!TYPES.containsKey(params[3])) {
             return "304";
         }

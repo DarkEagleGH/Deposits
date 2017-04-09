@@ -19,6 +19,7 @@ public class Client {
     public static void main(String[] args) {
         Boolean exit = false;
         System.out.println(translateCode(3));
+        FileReaderForHelp.ReadHelp();
         WriteResponse writeResponse = new WriteResponse();
         LinkedBlockingQueue<String> requestQueue = new LinkedBlockingQueue<>();
         LinkedBlockingQueue<String> responseQueue = new LinkedBlockingQueue<>();
@@ -54,18 +55,8 @@ public class Client {
                         Map<String, String> response;
                         response = mapper.readValue(responseLine, new TypeReference<HashMap<String, String>>() {
                         });
-                        if (response.containsKey("code")) {
-                            if (response.get("code").equals("0")) {
-                                if (response.containsKey("data")) {
-                                    System.out.println(writeResponse.writeResponse(parsed.get("command"), response.get("data")));
-                                }
-                                if (parsed.get("command").equals("add")) {
-                                    System.out.println(translateCode(0));
-                                }
-                            } else {
-                                System.out.println(translateCode(Integer.parseInt(response.get("code"))));
-                            }
-                        }
+                        writeResponse.writeResponse(response, parsed.get("command"));
+
                     } catch (InterruptedException | IOException e) {
                         e.printStackTrace();
                     }
