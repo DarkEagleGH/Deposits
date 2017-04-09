@@ -5,9 +5,9 @@ Available commands:
   info account <account id>
   info depositor <depositor>
   show type <type>
-  show name <name>
+  show bank <name>
   add <Account Id; Bank Name; Country; Deposit Type; Depositor; Amount on deposit; Profitability(in %); Time constraints(in days)>
     Available deposit types: POSTE_RESTANTE,UNGENT,SETTLEMENT,ACCUMULATIVE,SAVINGS,METAL
-    Example: add 452523;Privet;UK;UNGENT;Depositor;50000;89;365
+    Example: add 452523;King'sBank;UK;UNGENT;Depositor;50000;50;365;
   delete <account id>
   exit|quit
